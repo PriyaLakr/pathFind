@@ -5,7 +5,7 @@
 #PBS -o blastn.out
 #PBS -e blastn.err
 
-## variables d == infile directory
+## variables d == infile directory; dbdir == database directory 
 
 source activate pathseq
 
