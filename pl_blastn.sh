@@ -7,17 +7,14 @@
 
 ## variables d == infile directory; dbdir == database directory 
 
-source activate pathseq
-
-echo $dir
-echo $dbdir
+source activate pathseq 
 
 cd $dir
 mkdir blast_out
 
 outd=$dir/blast_out
 
-for i in *.fasta; do blastn -db $dbdir/all_patho -num_alignments 30 -query ${i} -out $outd/${i}_blast.out -outfmt 7 -perc_identity 50 -evalue 0.01 -num_threads 40; done
+for i in *.fasta; do blastn -db $dbdir/all_patho -num_alignments 30 -query ${i} -out $outd/${i}_blast.out -outfmt 7 -perc_identity 50 -evalue 0.0001 -num_threads 40; done
 
 conda deactivate
 
