@@ -22,7 +22,7 @@ can also mask low complexity regions before making database
 
 1.3. BLASTn search 
 
-	`qsub -v dbdir=/nfs_node1/priya/blast_database,dir=/nfs_node1/priya/blast_trial pl_blastn.sh`
+	qsub -v dbdir=/nfs_node1/priya/blast_database,dir=/nfs_node1/priya/blast_trial pl_blastn.sh
 
 # 2. Output analysis
 
