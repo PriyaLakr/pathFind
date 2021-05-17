@@ -5,16 +5,14 @@
 #PBS -o blastn.out
 #PBS -e blastn.err
 
-## variables d == infile directory; dbdir == database directory 
-
-source activate pathseq 
+## variables d == infile directory; dbdir == database directory; outformat == outformat of blast required
 
 cd $dir
 mkdir blast_out
 
 outd=$dir/blast_out
 
-for i in *.fasta; do blastn -db $dbdir/all_patho -num_alignments 30 -query ${i} -out $outd/${i}_blast.out -outfmt 7 -perc_identity 50 -evalue 0.0001 -num_threads 40; done
+for i in *.fasta; do blastn -db $dbdir/all_patho -num_alignments 30 -query ${i} -out $outd/${i}_blast.out -outfmt $outformat -perc_identity 50 -evalue 0.0001 -num_threads 40; done
 
-conda deactivate
+echo "Process completed"
 
