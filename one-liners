@@ -1,0 +1,9 @@
+                                   =================== awk scripts to format blast output ===================
+
+# comparing two different columns of two files, and if there is a match, create a new column!
+# useful in adding organism names and their genome length to blast output 
+
+awk 'FNR==NR{split($2,a,":"); split(a[2],b,"."); c=b[1]"."b[2]; d[c]=a[2]; split($3,f,":"); e[c]=f[2]; next}  { if (d[$2]) $13=d[$2]; $14=e[$2]}{print $0}' seqinfo.file blast.out > ed_blast.out
+
+
+# getting only hits from 
