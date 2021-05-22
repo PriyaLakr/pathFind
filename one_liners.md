@@ -7,7 +7,6 @@ getting only good hits from blast output (fmt7); here column 4 is query coverage
 
 `sort -k2 blast.out.goodhits > blast.out.goodhits.sorted`
 
-
 comparing two different columns of two files, and if there is a match, create a new column!
 useful in adding organism names and their genome length to blast output 
 
