@@ -21,7 +21,3 @@ Extracting reads which hit uniquely with your organism of choice
 
 `awk -F " " '{print $1}' | sort -u > blast.out.goodhits.sorted.ed.totalreads`
 
-
-
-
-
