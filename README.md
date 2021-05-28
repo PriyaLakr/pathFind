@@ -1,4 +1,5 @@
-# pathFindB
+# pathoFind
+
 
 Scripts for aligning reads from NGS data using BLAST. 
 
