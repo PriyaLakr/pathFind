@@ -8,7 +8,7 @@
 
 makedatabase(){
 
-	if [[ -z "$taxidfile" ]]; then
+	if [ -z "$taxidfile" ]; then
 		makeblastdb -in $input_file -dbtype $datatype -out $database_dir/$name -hash_index -parse_seqids  
 	else
 		makeblastdb -in $input_file -dbtype $datatype -out $database_dir/$name -hash_index -parse_seqids -taxid_map $taxidfile 
@@ -17,7 +17,7 @@ makedatabase(){
 
 
 while getopts "i:t:d:n:p:f:" opt; do
-	case $opt in
+	case "$opt" in
 		i) input_file="$OPTARG" ;;
 		t) datatype="$OPTARG" ;;
 		d) database_dir="$OPTARG" ;;
@@ -36,7 +36,7 @@ help(){
 	exit 1
 }
 
-if [[ -z "$input_file" ]] || [[ -z "$datatype" ]] || [[ -z "$name" ]] || [[ -z "$database_dir" ]];  then
+if [ -z "$input_file" ] || [ -z "$datatype" ] || [ -z "$name" ] || [ -z "$database_dir" ];  then
 	help
 else
 	echo -e "\tWARNING: Before using this script make sure ncbi blast is downloaded and path is set to 'PATH' enviornment variable"
