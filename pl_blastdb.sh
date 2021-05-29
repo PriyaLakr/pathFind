@@ -31,7 +31,6 @@ done
 
 
 help(){
-
 	echo -e "Usage: \n i (input_file) Provide fasta file to make database \n t (type) provide type of database to make; protein or nucl \n d (database_dir) provide path to store database files \n n (name) provide name of the database you want to make \n p (num_thread) provide number of threads"
 	exit 1
 }
