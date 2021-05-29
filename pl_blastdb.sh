@@ -24,7 +24,7 @@ while getopts "i:t:d:n:p:f:" opt; do
 		n) name="$OPTARG" ;;
 		p) num_thread="$OPTARG" ;;
 		f) taxidfile="$OPTARG" ;;
-		\?) help; exit 1
+		\?) help; exit 1 ;;
 	esac
 done
 
