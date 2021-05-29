@@ -1,5 +1,76 @@
 # pathoFind
 
+Identifying non-human reads in human NGS data
+
+
+This is the pipeline for identyfing non-human reads in human NGS data. The workflow contains three steps including substratcion of human reads, identification of non-human reads, and analysis.
+
+OS and softwares used:
+
+System details: HPC cluster; OS= Centos 7
+
+| Softwares | Version |
+| --------- | --------|
+| fastqc	 |	0.11.9 |
+| multiqc  	 |	1.10	|
+| trimmomatic    |  0.39	| 
+| bowtie2   	| 2.3.5.1 	|
+| STAR 		| 2.7.8a	|
+| NCBI-Blast+	| 2.11.0	|
+| Python 	|	3.7.10  |
+| samtools 	| 1.9		|
+
+All scripts are in the script folder!! 🤓
+
+Create your working enviornment 
+
+	conda create --name env 
+	 
+Activate your working enviornment 
+
+	conda activate env
+	
+# 1: Substratcion of human reads
+
+1.1. Quality check using fastqc, multiqc
+	
+	 bash pl_qc.sh [options]
+
+
+1.2. Trim adapters 
+
+Change trimmomatic parameters depending on your fastq files, and perform fastqc also on trimmed output files 
+
+	 bash pl_trim.sh [options]
+
+1.3a. For RNAseq data, STAR aligner is used  https://physiology.med.cornell.edu/faculty/skrabanek/lab/angsd/lecture_notes/STARmanual.pdf
+1.3b. For WGS data, BWA/bowtie2 aligner is used 
+
+Mapped reads from step1.3a,b can be used for their respective analysis. 
+Unmapped reads from step1.3a,b will be the input for step2 of the workflow.
+
+# 2: Identification of non-human reads
+
+It can be achieved via two ways, one involving Bowtie2 aligner and one involving NCBI-BLAST+
+
+2.1. Creating bowtie2 index 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Scripts for aligning reads from NGS data using BLAST. 
 
