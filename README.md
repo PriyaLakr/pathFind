@@ -32,8 +32,9 @@ Activate your working enviornment
 # 1: Substratcion of human reads
 
 1.1. Quality check using fastqc, multiqc
-	
-	 bash pl_qc.sh [options]
+'''
+bash pl_qc.sh [options]
+'''
 
 
 1.2. Trim adapters 
