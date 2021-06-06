@@ -1,5 +1,7 @@
 # pathoFind
 
+Author: Priya Lakra
+
 Identifying non-human reads in human NGS data
 
 This is the pipeline for identyfing non-human reads in human NGS data. The workflow contains three steps including substratcion of human reads, identification of non-human reads, and analysis.
