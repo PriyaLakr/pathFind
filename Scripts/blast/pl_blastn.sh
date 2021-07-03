@@ -5,7 +5,11 @@
 #PBS -o blastn.out
 #PBS -e blastn.err
 
-## variables d == infile directory; dbdir == database directory; outformat == outformat of blast required
+## variables dir == infile directory; dbdir == database directory; outformat == outformat of blast required
+
+echo $dir
+echo $dbdir
+echo $outformat
 
 cd $dir
 mkdir blast_out

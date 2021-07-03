@@ -1,0 +1,14 @@
+# renaming files
+
+# Extracting NCBI IDs and organism names from the list
+cut -d " " -f 1 N10.txt | cut -d "." -f3,4,5 > names.csv
+cut -d " " -f 1 N10.txt | cut -d "." -f1,2 > ncbiid.csv
+
+
+# rename files to first 3 characetrs of the name string
+for i in *.txt; do mv $i ./${i:0:3}; done
+
+
+# rename files with substitution
+for i in *.txt; do a=${i%%Aligned.*}; b=${a##*_}; mv $i ./${b}.txt; done
+
