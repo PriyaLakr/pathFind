@@ -48,7 +48,7 @@ def analyse(path):
     return new_path
 
 
-def combine_data(path):
+def combine_data(new_path):
     """
     Merge two or more dataframes by common keys
     
@@ -59,15 +59,17 @@ def combine_data(path):
 
     Returns
     -------
-    concatenated .csv files by common keys
+    concatenated .csv files by common organisms
     """
+    
+    from functools import reduce
    
-    os.chdir(path)
+    os.chdir(new_path)
     os.mkdir('final_output')
-    new_path=os.path.join(path,'final_output')
+    final_path=os.path.join(new_path,'final_output')
     
     names = []
-    for infile in os.listdir(path):
+    for infile in os.listdir(new_path):
         if infile.endswith("csv"):
             f_name=infile.split('.')[0]
             file = pd.read_csv(infile)
@@ -77,8 +79,9 @@ def combine_data(path):
     namesf = reduce(lambda left,right: pd.merge(left,right,on=['Organism'],
                                             how='outer'), names)  # outer: use union of keys from both frames
     namesf = namesf.fillna(0)
-   # namesf = namesf.reindex(sorted(namesf.columns[1:]), axis=1)
-    namesf.to_csv(f"{new_path}/file.csv", index=False)
+    namesf = namesf.reindex(sorted(namesf.columns), axis=1) #sorting columns by their name
+    namesf = namesf.set_index('Organism')
+    namesf.to_csv(f"{final_path}/file.csv", index=True)
 
 
 if __name__ == "__main__":
@@ -86,7 +89,6 @@ if __name__ == "__main__":
     import argparse  
     import os
     import pandas as pd
-    from functools import reduce
 
     parser = argparse.ArgumentParser(description = "This script is for analysing bowtie output files")
 
@@ -97,3 +99,6 @@ if __name__ == "__main__":
 
     new_path = analyse(path)
     combine_data(new_path)
+    
+    from datetime import datetime
+    print(f"\n   Analysis completed at {datetime.now().strftime('%H:%M:%S')}  \n")
