@@ -27,6 +27,14 @@ extract_reads(){
 }
 
 
+usage(){
+	echo "i (input_dir)                  Input directory where blastn output files are stored. Compatible with outfmt 7."
+	echo "p (percent_iden)               Cut-off for percent identity (column 4). This feature will extract all hits with percent identity matching or above the user-defined value."
+	echo "n (organismName)  [optional]   Name of any organism to be extracted from blastn output"
+	echo "f (seqinfo)       [optional]   File containing sequence information used to generate the blast database, for instance, genome size, organism name, IDs, etc. Provided in the data folder."
+}
+	
+	
 while getopts "i:p:n:f:" opt; do
 	case $opt in
 		i) input_dir="$OPTARG" ;;
@@ -37,8 +45,11 @@ while getopts "i:p:n:f:" opt; do
 done
 	
 	
-if [[ -z "$@" ]]; then
-	echo -e "Provide path to the directory containing input files and percentage identify value"
+#if [[ -z "$@" ]]; then # if none argument is provided
+if [[ -z $input_dir || -z $percent_iden ]]; then
+	echo -e "\nProvide parameters:"
+	usage
+	echo
 else
 	mkdir -p $input_dir/pro_out/goodhits/"$organismName"_files && mkdir -p $input_dir/pro_out/tmp && cd $input_dir && \
 	goodhits && sorting && add_genome_size && extract_reads && \
