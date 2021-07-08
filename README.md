@@ -31,7 +31,7 @@ Activate your working enviornment
 
 	conda activate env
 	
-# 1: Substratcion of human reads
+# 1. Substratcion of human reads
 
 ### 1.1. Quality check using fastqc, multiqc
 
@@ -49,7 +49,7 @@ Change trimmomatic parameters depending on your fastq files, and perform fastqc 
 Mapped reads from step1.3a,b can be used for their respective analysis. 
 Unmapped reads from step1.3a,b will be the input for step2 of the workflow.
 
-# 2: Identification of non-human reads
+# 2. Identification of non-human reads
 
 It can be achieved via two ways, one involving Bowtie2 aligner and one involving NCBI-BLAST+
 
