@@ -100,6 +100,8 @@ Take output files from 1.3a,b and align against human genome with bowtie2. Extra
 
 # 3. Output analysis
 
+Note: Rename files for the ease of processing. Example script in scripts/bowtie/preprocessFiles
+
 Output analysis include calculating genome coverage for each organism. 
 > Genome coverage = (read length * number of reads)/genome size
 
