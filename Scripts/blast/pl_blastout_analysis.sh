@@ -15,12 +15,12 @@ sorting(){
 
 add_genome_size(){
 	ls *.sorted > sorted_samples_list && \
-	while read i; do awk 'FNR==NR{split($2,a,":"); split(a[2],b,"."); c=b[1]"."b[2]; d[c]=a[2]; split($3,f,":"); e[c]=f[2]; next}  { if (d[$2]) {$13=d[$2]; $14=e[$2]} }{print $0}' $seqinfo ${i} > ${i}.edited; done < sorted_samples_list
+	while read i; do awk 'FNR==NR{split($2,a,":"); split(a[2],b,"."); c=b[1]"."b[2]; d[c]=a[2]; split($3,f,":"); e[c]=f[2]; next}  { if (d[$2]) {$13=d[$2]; $14=e[$2]} }{print $0}' $seqinfo ${i} > ${i}.edited.txt; done < sorted_samples_list
 }
 
 
 extract_reads(){
-	ls *.edited > edited_samples_list
+	ls *.edited.txt > edited_samples_list
 	while read i; do grep "$organismName" ${i} | awk -F " " '{print $0}' | sort -u > ${i}_organism; done < edited_samples_list
 	while read i; do grep -v "$organismName" ${i} | awk -F " " '{print $0}' | sort -u > ${i}_Otherorganism; done < edited_samples_list 
 	#while read i; do awk -F " " '{print $1}' | sort -u ${i} > ${i}_totalreads; done < edited_samples_list
@@ -52,14 +52,14 @@ if [[ -z $input_dir || -z $percent_iden ]]; then
 	echo
 else
 	mkdir -p $input_dir/pro_out/goodhits/"$organismName"_files && mkdir -p $input_dir/pro_out/tmp && cd $input_dir && \
-	if [[ $organismName ]]; then
+	if [ $organismName ]; then
 		goodhits && sorting && add_genome_size && extract_reads && \
-		mv *.edited $input_dir/pro_out/goodhits
+		mv *.edited.txt $input_dir/pro_out/goodhits
 		mv *_organism $input_dir/pro_out/goodhits/"$organismName"_files
 		mv *.sorted *_Otherorganism *.goodhits *_list $input_dir/pro_out/tmp
 	else
 		goodhits && sorting && add_genome_size && \
-		mv *.edited $input_dir/pro_out/goodhits
+		mv *.edited.txt $input_dir/pro_out/goodhits
 		mv *.sorted *.goodhits *_list $input_dir/pro_out/tmp
 		rmdir $input_dir/pro_out/goodhits/"$organismName"_files # any other better way to rm empty directories
 	fi
