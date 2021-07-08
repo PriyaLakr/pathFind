@@ -1,5 +1,5 @@
 def blast_analysis(path):
-	"""
+    """
     Analyse blast output files
     
     Parameters
