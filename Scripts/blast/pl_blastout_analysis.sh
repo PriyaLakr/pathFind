@@ -52,10 +52,17 @@ if [[ -z $input_dir || -z $percent_iden ]]; then
 	echo
 else
 	mkdir -p $input_dir/pro_out/goodhits/"$organismName"_files && mkdir -p $input_dir/pro_out/tmp && cd $input_dir && \
-	goodhits && sorting && add_genome_size && extract_reads && \
-	mv *.edited $input_dir/pro_out/goodhits
-	mv *_organism $input_dir/pro_out/goodhits/"$organismName"_files
-	mv *.sorted *_Otherorganism *.goodhits *_list $input_dir/pro_out/tmp
+	if [[ $organismName ]]; then
+		goodhits && sorting && add_genome_size && extract_reads && \
+		mv *.edited $input_dir/pro_out/goodhits
+		mv *_organism $input_dir/pro_out/goodhits/"$organismName"_files
+		mv *.sorted *_Otherorganism *.goodhits *_list $input_dir/pro_out/tmp
+	else
+		goodhits && sorting && add_genome_size && \
+		mv *.edited $input_dir/pro_out/goodhits
+		mv *.sorted *.goodhits *_list $input_dir/pro_out/tmp
+		rmdir $input_dir/pro_out/goodhits/"$organismName"_files # any other better way to rm empty directories
+	fi
 	echo "Analysis complete"
 fi
 	
